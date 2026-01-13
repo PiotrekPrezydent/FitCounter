@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EFF1F5"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="YOUR BMI SCORE"
+        android:textColor="#78909C"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/tvBmiScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24.5"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        android:textColor="#263238"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="#4CAF50"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/tvBmiCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal Weight"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp"
+            android:textSize="18sp"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculated for: 180 cm, 80 kg"
+        android:textAlignment="center"
+        android:textColor="#546E7A"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BMI Categories:\n• Underweight: &lt; 18.5\n• Normal: 18.5 - 24.9\n• Overweight: 25 - 29.9\n• Obesity: > 30"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:textColor="#455A64"
+        android:lineSpacingExtra="4dp"/>
+
+    <Button
+        android:id="@+id/btnUpdateProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Body Metrics"
+        android:layout_marginTop="24dp"
+        app:backgroundTint="#8E24AA"/>
+
+</LinearLayout>
