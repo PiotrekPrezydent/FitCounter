@@ -29,7 +29,6 @@ class HistoryActivity : AppCompatActivity() {
                 dateFormat.format(Date(session.date))
             }
 
-            //td add steps
             val summaryList = groupedMap.map { (dateStr, sessions) ->
                 DailySummary(
                     dateString = dateStr,
@@ -37,7 +36,10 @@ class HistoryActivity : AppCompatActivity() {
                         .sumOf { it.reps },
                     totalSquats = sessions.filter { it.type == TrainingType.SQUAT }
                         .sumOf { it.reps },
-                    sessions = sessions // Przekazujemy listę do popupu
+                    totalSteps = sessions.filter { it.type == TrainingType.STEP }
+                        .sumOf { it.reps },
+                    totalGold = sessions.sumOf { it.goldEarned },
+                    sessions = sessions
                 )
             }
 

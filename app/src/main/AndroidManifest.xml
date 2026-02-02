@@ -29,6 +29,9 @@
             android:name=".TrainingActivity"
             android:exported="false" />
         <activity
+            android:name=".HealthGuideActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

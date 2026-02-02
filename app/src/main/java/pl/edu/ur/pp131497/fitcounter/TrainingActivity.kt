@@ -118,7 +118,10 @@ class TrainingActivity : AppCompatActivity() {
                     type = viewModel.trainingType,
                     reps = reps,
                     date = System.currentTimeMillis(),
-                    calories = burnedKcal
+                    calories = burnedKcal,
+                    monsterDefeated = false,
+                    damageDealt = 0,
+                    goldEarned = 0
                 )
             }
             finish()

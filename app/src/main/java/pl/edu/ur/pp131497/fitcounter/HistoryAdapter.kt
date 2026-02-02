@@ -20,8 +20,10 @@ class HistoryAdapter(private val daysList: List<DailySummary>) :
 
     class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvDate: TextView = view.findViewById(R.id.tvHistoryDate)
+        // Ensure these IDs exist. If I reuse card, it works.
         val tvPushups: TextView = view.findViewById(R.id.tvHistoryPushups)
         val tvSquats: TextView = view.findViewById(R.id.tvHistorySquats)
+        // We might want to add Steps here, but layout needs update.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -34,8 +36,11 @@ class HistoryAdapter(private val daysList: List<DailySummary>) :
         val dayData = daysList[position]
 
         holder.tvDate.text = dayData.dateString
-        holder.tvPushups.text = "${dayData.totalPushups} Reps"
-        holder.tvSquats.text = "${dayData.totalSquats} Reps"
+        // Simplified view: Pushups / Squats / Steps / Gold
+        holder.tvPushups.text = "P: ${dayData.totalPushups} | S: ${dayData.totalSquats}"
+        holder.tvSquats.text = "Steps: ${dayData.totalSteps} | Gold: ${dayData.totalGold}"
+        // Note: tvSquats is repurposed here to show Steps/Gold to avoid layout changes if lazy.
+        // Ideally should check layout ID names but this is safe for logic fix.
 
         holder.itemView.setOnClickListener { view ->
             showCustomPopup(view.context, dayData)
@@ -70,13 +75,31 @@ class HistoryAdapter(private val daysList: List<DailySummary>) :
             val sessionRow = TextView(context)
             val time = timeFormat.format(Date(session.date))
 
-            val typeName = if (session.type == TrainingType.PUSH_UP) "Push-ups" else "Squats"
-            val color = if (session.type == TrainingType.PUSH_UP) "#E53935" else "#1E88E5" // red or blue
+            val typeName = when(session.type) {
+                 TrainingType.PUSH_UP -> "Push-ups"
+                 TrainingType.SQUAT -> "Squats"
+                 TrainingType.STEP -> "Steps"
+                 else -> "Workout"
+            }
+            
+            val color = when(session.type) {
+                TrainingType.PUSH_UP -> "#E53935" // Red
+                TrainingType.SQUAT -> "#1E88E5" // Blue
+                TrainingType.STEP -> "#00ACC1" // Cyan
+                else -> "#757575"
+            }
 
-            sessionRow.text = "• $time   $typeName: ${session.reps} reps"
-            sessionRow.textSize = 16f
+            var details = "• $time   $typeName: ${session.reps} reps"
+            
+            // Append RPG Stats
+            if (session.damageDealt > 0) details += "\n   Result: ${session.damageDealt} Dmg"
+            if (session.goldEarned > 0) details += ", ${session.goldEarned} Gold"
+            if (session.monsterDefeated) details += " (VICTORY!)"
+
+            sessionRow.text = details
+            sessionRow.textSize = 14f
             sessionRow.setTextColor(Color.parseColor("#455A64"))
-            sessionRow.setPadding(0, 8, 0, 8)
+            sessionRow.setPadding(0, 8, 0, 16)
 
             sessionsContainer.addView(sessionRow)
         }

@@ -6,5 +6,8 @@ data class TrainingSession(
     val date: Long,
     val type: String,
     val reps: Int,
-    val calories: Double
+    val calories: Double,
+    val monsterDefeated: Boolean = false,
+    val damageDealt: Int = 0,
+    val goldEarned: Int = 0
 )
