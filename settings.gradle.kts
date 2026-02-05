@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "FitCounter"
+rootProject.name = "FitHeroRPG"
 include(":app")
  

@@ -4,17 +4,17 @@ plugins {
 }
 
 android {
-    namespace = "pl.edu.ur.pp131497.fitcounter"
+    namespace = "pl.edu.ur.pp131497.fitherorpg"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "pl.edu.ur.pp131497.fitcounter"
+        applicationId = "pl.edu.ur.pp131497.fitherorpg"
         minSdk = 24
         targetSdk = 36
-        versionCode = 3
-        versionName = "2.1"
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
